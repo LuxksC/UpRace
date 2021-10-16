@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+body {
+  background: #fefefe;
+  color: #29292e;
+}
+
+:root {
+  --hue: 212;
+  --base-color: hsl(var(--hue) 100% 59%);
+  --base-hover-color: hsl(var(--hue) 100% 30%);
+}
