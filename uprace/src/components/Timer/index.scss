@@ -1,0 +1,18 @@
+#timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--base-color);
+
+  position: absolute;
+  z-index: 3;
+
+  .timerText {
+    color: #fefefe;
+    font: 400 140px 'Paytone One', sans-serif;
+  }
+}

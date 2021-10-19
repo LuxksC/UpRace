@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { Timer } from '../../components/Timer';
 
 import toast from 'react-hot-toast';
 
@@ -30,7 +31,7 @@ export function Home() {
 
   return (
     <div id="home-page">
-      {/*formSubmited && <Timer/>*/}
+      {formSubmited && <Timer/>}
       <aside>
         <img src={carsRunningImg} alt="Carros correndo" />
         <h1>UP &amp; FURIOUS </h1>

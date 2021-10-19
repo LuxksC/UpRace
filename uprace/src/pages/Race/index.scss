@@ -1,0 +1,32 @@
+#race {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .track {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+  }
+
+  .blueCar {
+    position: fixed;
+    z-index: 2;
+    width: 15vw;
+    height: auto;
+    bottom: 0;
+  }
+
+  .center {
+    left: 40vw;
+  }
+
+  .left {
+    left: 5vw;
+  }
+
+  .right {
+    left: 75vw;
+  }
+}
