@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import { Home } from './pages/Home';
-import { Timer } from './components/Timer';
 import { Race } from './pages/Race';
+import { TutorialModal } from './components/TutorialModal';
 
 function App() {
   return (

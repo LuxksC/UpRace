@@ -4,10 +4,65 @@
   align-items: center;
   justify-content: center;
 
+  .race-header {
+    position: fixed;
+    z-index: 2;
+    top: 10px;
+
+    display: flex;
+    gap: 100px;
+
+    .race-information {
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+
+      border: 2px solid black;
+      background: #fefefe;
+
+      font: 400 1rem 'VT323', sans-serif;
+      font-style: normal;
+
+      border-radius: 10px;
+
+      p {
+        font-size: 3em;
+      }
+    }
+  }
+
   .track {
+    margin: 0;
+    padding: 0;
     width: 100vw;
     height: 100vh;
     z-index: 1;
+
+    .gif {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 1002px;
+      height: 1002px;
+
+      background: url(../../assets/images/spriteTrackGiff.png);
+
+      animation: animate 0.5s steps(2) infinite;
+    }
+    @keyframes animate {
+      from {
+        background-position: 0;
+      }
+      to {
+        background-position: 2004px;
+      }
+    }
+
+    .gif.pause {
+      animation-play-state: paused;
+    }
   }
 
   .blueCar {

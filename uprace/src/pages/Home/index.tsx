@@ -1,12 +1,11 @@
 import { FormEvent, useState } from 'react';
-import { Timer } from '../../components/Timer';
+import { TutorialModal } from '../../components/TutorialModal';
 
 import toast from 'react-hot-toast';
 
 import carsRunningImg from '../../assets/images/carsRunning.svg';
 
 import '../Home/index.scss';
-
 
 
 export function Home() {
@@ -24,14 +23,14 @@ export function Home() {
 
     setFormSubmited(true)
 
-    console.log(formSubmited)
-
     return
   }
 
   return (
     <div id="home-page">
-      {formSubmited && <Timer/>}
+      {formSubmited && <TutorialModal 
+      formSubmited = {formSubmited}
+      setFormSubmited = {setFormSubmited}/>}
       <aside>
         <img src={carsRunningImg} alt="Carros correndo" />
         <h1>UP &amp; FURIOUS </h1>

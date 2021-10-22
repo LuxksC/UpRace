@@ -1,0 +1,160 @@
+.modal-background {
+  margin: 0;
+  position: absolute;
+  z-index: 2;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: #343434;
+  opacity: 0.8;
+}
+
+#tutorial-modal {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 500px;
+  height: 628px;
+
+  border-radius: 15px;
+
+  background: var(--base-color);
+
+  font-size: 1rem;
+
+  h2 {
+    font: 400 6.4em 'VT323', sans-serif;
+    color: #fefefe;
+    margin-top: 13px;
+  }
+
+  .letter-keys {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 50px;
+    gap: 37px;
+  }
+
+  .arrow-keys {
+    margin: 0 131px 30px 131px;
+    display: flex;
+    align-items: center;
+    gap: 45px;
+  }
+
+  .key-instruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    gap: 5px;
+
+    width: 115px;
+
+    p {
+      font: 400 1.4em 'Paytone One', sans-serif;
+    }
+  }
+
+  .start-race {
+    border-radius: 25px;
+    border: 2px solid black;
+
+    height: 50px;
+    width: 50%;
+    text-align: center;
+
+    font: 400 2.8em 'VT323', sans-serif;
+
+    background: #fff;
+
+    cursor: pointer;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  > img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: -2px;
+  }
+
+  .close-modal {
+    width: 30px;
+    height: 20px;
+
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 4;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    .one,
+    .two {
+      background-color: #fff;
+      height: 5px;
+      width: 100%;
+      margin: -5px -5px;
+    }
+
+    .one {
+      transform: rotate(45deg);
+    }
+
+    .two {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@media (max-height: 700px) {
+  #tutorial-modal {
+    width: 350px;
+    height: 500px;
+
+    font-size: 0.8rem;
+
+    .letter-keys {
+      margin: 21px 0;
+      gap: 30px;
+    }
+
+    .arrow-keys {
+      margin-bottom: 21px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .key-instruction {
+      gap: 5px;
+
+      width: 85px;
+    }
+
+    .close-modal {
+      width: 20px;
+      height: 15px;
+    }
+  }
+}
