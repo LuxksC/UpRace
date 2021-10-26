@@ -1,7 +1,7 @@
 .modal-background {
   margin: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
 
   width: 100vw;
   height: 100vh;
@@ -10,13 +10,17 @@
   opacity: 0.8;
 }
 
+#tutorial-modal.in-game {
+  height: 570px;
+}
+
 #tutorial-modal {
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 6;
 
   display: flex;
   flex-direction: column;
@@ -128,6 +132,10 @@
 }
 
 @media (max-height: 700px) {
+  #tutorial-modal.in-game {
+    height: 452px;
+  }
+
   #tutorial-modal {
     width: 350px;
     height: 500px;

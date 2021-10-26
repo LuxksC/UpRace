@@ -6,7 +6,7 @@
 
   .race-header {
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 10px;
 
     display: flex;
@@ -65,23 +65,68 @@
     }
   }
 
-  .blueCar {
-    position: fixed;
-    z-index: 2;
-    width: 15vw;
+  .car {
+    position: absolute;
     height: auto;
-    bottom: 0;
   }
 
-  .center {
+  .bottom-center,
+  .bottom-left,
+  .bottom-right {
+    width: 15vw;
+    bottom: 0;
+    z-index: 4;
+  }
+
+  .bottom-center {
     left: 40vw;
   }
 
-  .left {
+  .bottom-left {
     left: 5vw;
   }
 
-  .right {
+  .bottom-right {
     left: 75vw;
+  }
+
+  .mid-center,
+  .mid-left,
+  .mid-right {
+    width: 10vw;
+    bottom: 25vh;
+    z-index: 3;
+  }
+
+  .mid-center {
+    left: 42.6vw;
+  }
+
+  .mid-left {
+    left: 22vw;
+  }
+
+  .mid-right {
+    left: 63vw;
+  }
+
+  .top-center,
+  .top-left,
+  .top-right {
+    width: 5vw;
+    bottom: 40vh;
+    z-index: 2;
+  }
+
+  .top-center {
+    left: 45.2vw;
+  }
+
+  .top-left {
+    left: 36vw;
+  }
+
+  .top-right {
+    left: 55vw;
   }
 }

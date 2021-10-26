@@ -14,12 +14,14 @@ import '../TutorialModal/index.scss'
 type TutorialModalProps = {
   formSubmited: boolean,
   setFormSubmited: React.Dispatch<React.SetStateAction<boolean>>
+  isInGame?: boolean,
   /* children?: ReactNode, */
 }
 
 export function TutorialModal({
   formSubmited = true,
   setFormSubmited,
+  isInGame=false,
 }: TutorialModalProps) {
 
   const [startTimer, setStartTimer] = useState(false);
@@ -36,7 +38,7 @@ export function TutorialModal({
     <>
     {startTimer && <Timer/>}
     <div className="modal-background"></div>
-    <main id="tutorial-modal">
+    <main id="tutorial-modal" className={isInGame ? 'in-game' : ''}>
       <h2>Tutorial</h2>
       <div className="letter-keys">
         <div className="key-instruction">
@@ -62,11 +64,14 @@ export function TutorialModal({
           <p>Move carro para direita</p>
         </div>
       </div>
+
+      {!isInGame && 
       <button className = 'start-race'
       onClick = {handleStartTimer}
       >
         Hora de rodar!
-      </button>
+      </button>}
+      
       <img src={modalTutorialBackground} alt="Carro no por do sol." />
       <button className='close-modal'
       onClick = {handleCloseModal}

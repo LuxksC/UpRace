@@ -1,0 +1,34 @@
+#pixel-button {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
+
+  svg path {
+    transition: fill 0.2s;
+  }
+
+  button {
+    background: none;
+    color: #fefefe;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: none;
+    font: 400 3.2rem 'VT323', sans-serif;
+    z-index: 2;
+    cursor: pointer;
+
+    transition: filter 0.2s;
+  }
+
+  &:hover {
+    svg path {
+      fill: var(--base-hover-color);
+    }
+
+    button {
+      filter: brightness(0.9);
+    }
+  }
+}
