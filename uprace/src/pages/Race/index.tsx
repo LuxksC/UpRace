@@ -1,71 +1,46 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useEffect, useContext } from 'react';
 
 import { TutorialModal } from '../../components/TutorialModal';
+import { useGame } from '../../hooks/useGame';
+
+import { EndGameContext } from '../../App'
 
 import pauseBackground from '../../assets/images/pauseBackground.png'
 import redCarImg from '../../assets/images/redCar.svg'
+import bgTrack from '../../assets/audio/backgroundTrack.mp3'
 
 import '../Race/index.scss' 
 
+
 export function Race(){
+  const { carCrashed, setCarCrashed } = useContext(EndGameContext);
 
-  const history = useHistory();
-
-  const [isPaused, setIsPaused] = useState(false);
-  const [carIsCrashed, setCarIsCrashed] = useState(false);
-
-  const positions = [['top-left', 'top-center', 'top-right'],['mid-left', 'mid-center', 'mid-right'],['bottom-left', 'bottom-center', 'bottom-right']];
-
-  const [redCarVerticalPosition, setRedCarVerticalPosition] = useState(0);
-  const [redCarHorizontalPosition, setRedCarHorizontalPosition] = useState(1);
-  const [updateTimeRedCar, setUpdateTimeRedCar] = useState(1000);
-  const [showRedCar, setShowRedCar] = useState(true);
-
-  const [blueCarPosition, setBlueCarPosition] = useState('bottom-center');
-  const [speed, setSpeed] = useState(40);
-  const [distance, setDistance] = useState(3300);
-  const [time, setTime] = useState(0);
-
-  const handleGameOver = () => {
-    if (blueCarPosition === positions[redCarVerticalPosition][redCarHorizontalPosition] && showRedCar) {
-      setCarIsCrashed(true);
-      history.push('/gameover');
-    }
-  }
-
- /*  RED CAR UPDATE POSITION */
- const updateRedCarPosition = () => {
-  if (redCarVerticalPosition === 2) {
-    /* setShowRedCar(false); */
-    setRedCarVerticalPosition(0);
-    setRedCarHorizontalPosition(Math.floor(Math.random() * (2 - 0 + 1)) + 0);
-  } else {
-    setRedCarVerticalPosition(redCarVerticalPosition+1);
-    /* setRedCarHorizontalPosition(Math.floor(Math.random() * (2 - 0)) + 0); */
-  }
-}
+  const { gameStatus, blueCarStatus, redCarStatus, positions, updateRedCarPosition, handleGameTimeChanges, downgradeGameDistance, handleKeyDown, verifyCarCrash, handlePauseGame, handleGameOver} = useGame();
 
   useEffect(() => {
-    if (!isPaused) {
+    handleGameOver();
+  }, [gameStatus.distance, carCrashed]);
+  
+  useEffect(() => {
+    if (!gameStatus.isPaused) {
       let redCarUpdateInterval = setInterval(() => {
         updateRedCarPosition();
-        handleGameOver();
-      }, updateTimeRedCar);
+        verifyCarCrash();
+      }, redCarStatus.updateTime);
   
       return () => clearInterval(redCarUpdateInterval);
     } else {
       return;
     }
     
-  }, [redCarVerticalPosition, isPaused]);
+  }, [redCarStatus.verticalPosition, gameStatus.isPaused]);
 
 
   /* TIME COUNTER */
   useEffect(() => {
-    if (!isPaused) {
+    if (!gameStatus.isPaused) {
       let timeInterval = setInterval(() => {
-        setTime(time+1);
+        handleGameTimeChanges();
       }, 1000);
   
       return () => clearInterval(timeInterval);
@@ -73,74 +48,22 @@ export function Race(){
       return;
     }
     
-  }, [time, isPaused]);
+  }, [gameStatus.time, gameStatus.isPaused]);
 
   /* DISTANCE COUNTER */
   useEffect(() => {
-    if (!isPaused) {
+    if (!gameStatus.isPaused) {
       let distanceInterval = setInterval(() => {
-        setDistance(distance-1);
-      }, 90);
+        downgradeGameDistance();
+      }, (3600/blueCarStatus.speed));
   
       return () => clearInterval(distanceInterval);
     } else {
       return
     } 
-  }, [distance, isPaused]);
+  }, [gameStatus.distance, gameStatus.isPaused]);
 
- /*  KEY DOWN EVENTS */
- const handleKeyDown = (event: KeyboardEvent) => {
-  if (!isPaused) {
-    switch(event.key) {
-      case 's': case 'S':
-        setBlueCarPosition('bottom-center');
-        console.log('s')
-        break;
-      case 'a': case 'A':
-        setBlueCarPosition('bottom-left');
-        console.log('a')
-        break;
-      case 'd': case 'D':
-        setBlueCarPosition('bottom-right');
-        console.log('d')
-        break;
-      case 'ArrowRight':
-        switch (blueCarPosition) {
-          case 'bottom-left':
-            setBlueCarPosition('bottom-center');
-            console.log('ArrowCenter')
-            break;
-          case 'bottom-center':
-            setBlueCarPosition('bottom-right');
-            console.log('ArrowRight')
-            break;
-        }
-        break;
-      case 'ArrowLeft':
-        switch (blueCarPosition) {
-          case 'bottom-center':
-            setBlueCarPosition('bottom-left');
-            console.log('ArrowLeft')
-            break;
-          case 'bottom-right':
-            setBlueCarPosition('bottom-center');
-            console.log('ArrowLeftCenter')
-            break;
-        }
-        break;
-      case 'Escape':
-        setIsPaused(!isPaused);
-        break;  
-  }
-  } else {
-    switch(event.key) {
-      case 'Escape':
-        setIsPaused(!isPaused);
-        break;  
-    }
-  }
-}
-
+  /* KEYBOARD EVENTS */
   useEffect(() => {
     
     window.addEventListener("keydown", handleKeyDown);
@@ -150,42 +73,43 @@ export function Race(){
 
   return (
     <div id='race'>
+      <audio autoPlay loop>
+        <source src={bgTrack} type="audio/mp3"/>
+      </audio>
       <header className='race-header'>
         <div className="race-information">
           <p>Velocidade</p>
-          <p>{speed} km/h</p>
+          <p>{blueCarStatus.speed} km/h</p>
         </div>
         <div className="race-information">
           <p>Distância</p>
-          <p>{distance} m</p>
+          <p>{gameStatus.distance} m</p>
         </div>
         <div className="race-information">
           <p>Tempo</p>
-          <p>{time} s</p>
+          <p>{gameStatus.time} s</p>
         </div>
       </header>
 
-      {isPaused && <TutorialModal
-      formSubmited = {isPaused}
-      setFormSubmited = {setIsPaused}
+      {gameStatus.isPaused && <TutorialModal
+      showModal = {gameStatus.isPaused}
+      setShowModal = {handlePauseGame}
       isInGame
       />}
 
-      {isPaused && <img src={pauseBackground} alt='Pista de corrida parada' className='track'/>}
+      {gameStatus.isPaused && <img src={pauseBackground} alt='Pista de corrida parada' className='track'/>}
 
       {/* GIFF RETIRADO DO NOTION */}
-      {!isPaused && <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F49e38bac-5a6c-4505-b7c7-742c0514bb69%2FCENARIO_anima.gif?table=block&id=f0789bc1-6482-42f8-a042-9fa71f6ed866&spaceId=398d34ba-2026-4971-8d11-e53d1787a426&userId=fe7458d9-ddea-4a9c-8857-91072f1b0f7a&cache=v2" alt="Pista de corrida em movimento" className='track'/>}
+      {!gameStatus.isPaused && <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F49e38bac-5a6c-4505-b7c7-742c0514bb69%2FCENARIO_anima.gif?table=block&id=f0789bc1-6482-42f8-a042-9fa71f6ed866&spaceId=398d34ba-2026-4971-8d11-e53d1787a426&userId=fe7458d9-ddea-4a9c-8857-91072f1b0f7a&cache=v2" alt="Pista de corrida em movimento" className='track'/>}
 
       {/* GIFF GERADO PELO CSS
       <div className='track'>
         <div className = 'gif'></div>
       </div> */}
 
-      <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff05e46f1-8333-425c-a610-cc1e6cdda6d1%2FCARRO.png?table=block&id=50eaa5d5-bb41-486e-9638-efcdf1b5b584&spaceId=398d34ba-2026-4971-8d11-e53d1787a426&width=1050&userId=fe7458d9-ddea-4a9c-8857-91072f1b0f7a&cache=v2" alt="Fusca azul" className={`car ${blueCarPosition}`}/>
+      <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff05e46f1-8333-425c-a610-cc1e6cdda6d1%2FCARRO.png?table=block&id=50eaa5d5-bb41-486e-9638-efcdf1b5b584&spaceId=398d34ba-2026-4971-8d11-e53d1787a426&width=1050&userId=fe7458d9-ddea-4a9c-8857-91072f1b0f7a&cache=v2" alt="Fusca azul" className={`car ${blueCarStatus.position}`}/>
 
-      {showRedCar && <img src={redCarImg} alt="Fusca vermelho" className={`car ${positions[redCarVerticalPosition][redCarHorizontalPosition]}`}/>}
-
-      
+      {redCarStatus.isShown && <img src={redCarImg} alt="Fusca vermelho" className={`car ${positions[redCarStatus.verticalPosition][redCarStatus.horizontalPosition]}`}/>}
     </div>
   )
 };

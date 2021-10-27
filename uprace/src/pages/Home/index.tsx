@@ -30,8 +30,8 @@ export function Home() {
   return (
     <div id="home-page">
       {formSubmited && <TutorialModal 
-      formSubmited = {formSubmited}
-      setFormSubmited = {setFormSubmited}/>}
+      showModal = {formSubmited}
+      setShowModal = {setFormSubmited}/>}
       <aside>
         <img src={carsRunningImg} alt="Carros correndo" />
         <h1>UP &amp; FURIOUS </h1>

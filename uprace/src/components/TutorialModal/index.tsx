@@ -12,15 +12,15 @@ import modalTutorialBackground from '../../assets/images/backgroundImgTutorialMo
 import '../TutorialModal/index.scss'
 
 type TutorialModalProps = {
-  formSubmited: boolean,
-  setFormSubmited: React.Dispatch<React.SetStateAction<boolean>>
+  showModal: boolean,
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>> | ((value: boolean) => void),
   isInGame?: boolean,
   /* children?: ReactNode, */
 }
 
 export function TutorialModal({
-  formSubmited = true,
-  setFormSubmited,
+  showModal = true,
+  setShowModal,
   isInGame=false,
 }: TutorialModalProps) {
 
@@ -31,7 +31,7 @@ export function TutorialModal({
   }
 
   function handleCloseModal() {
-    setFormSubmited(false)
+    setShowModal(false)
   }
 
   return(

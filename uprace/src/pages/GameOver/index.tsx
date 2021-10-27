@@ -1,24 +1,27 @@
+import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { PixelButton } from '../../components/PixelButton';
+import { useGame } from "../../hooks/useGame";
+import { EndGameContext } from '../../App';
 
 import './index.scss';
 
-type GameOverProps = {
-  isCrashed: boolean,
-  playerWin: boolean,
-};
-
-export function GameOver ({
-  isCrashed = false,
-}: GameOverProps) {
-
+export function GameOver () {
+  const { carCrashed, setCarCrashed } = useContext(EndGameContext);
   const history = useHistory();
 
-  return (
-    <div id='game-over' className={isCrashed ? 'loose' : 'win'}>
+  function redirectPlayer(path: string) {
+    if (carCrashed) {
+      setCarCrashed(false);
+    }
+    history.push(path);
+  } 
 
-      {isCrashed ? 
+  return (
+    <div id='game-over' className={carCrashed ? 'loose' : 'win'}>
+
+      {carCrashed ? 
       <>
         <h2>Fim de jogo!</h2>
         <p>Olá, gostaríamos de avisar que você bateu o carro e ele <strong>explodiu</strong>!<br />Felizmente nossa equipe acionou os bombeiros e ninguém se acidentou<br />Por favor, tome mais cuidado na próxima</p>
@@ -30,12 +33,12 @@ export function GameOver ({
       </>}
 
       <PixelButton 
-      color={isCrashed ? 'red' : 'green'}
-      onClick = {() => history.push('/race')}
+      color={carCrashed ? 'red' : 'green'}
+      onClick = {() => redirectPlayer('/race')}
       >Jogar novamente</PixelButton>
       <PixelButton
-      color={isCrashed ? 'red' : 'green'} 
-      onClick = {() => history.push('/')}
+      color={carCrashed ? 'red' : 'green'} 
+      onClick = {() => redirectPlayer('/')}
       >Sair do jogo</PixelButton>
     </div>
   )
