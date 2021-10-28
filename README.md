@@ -34,11 +34,11 @@ Serviços
 
 ## 💻 Projeto
 
-UP & FURIOUS é um jogo de corrida e desvio de obstáculos, single player feito no formato SPA(Single Page Application), para ser jogado através de um notebook ou desktop. Possui uma tela inicial para identificação do usuário, um modal com informações sobre os comandos para controlar o carro, a tela de jogo e uma página final de fim de jogo.
+UP & FURIOUS é um jogo de corrida e desvio de obstáculos, single player e feito no formato SPA(Single Page Application), para ser jogado através de um notebook ou desktop. Possui uma tela inicial para identificação do usuário, um modal com informações sobre os comandos para controlar o carro, a tela de jogo e duas páginas finais de fim de jogo.
 
 Você pode acessar o jogo através desse [link](https://up-and-furious.web.app/)
 
-Para contribuir com o projeto, é necessário instalar o [git](https://git-scm.com/), o [node](https://nodejs.org/en/) o [yarn](https://yarnpkg.com/) em sua máquina. Após fazer isso, clone esse repositório para uma pasta local, entre na pasta uprace através do seu terminal e rode o comando abaixo, através da linha de comando:
+Para contribuir com o projeto, é necessário instalar o [git](https://git-scm.com/), [node](https://nodejs.org/en/) e [yarn](https://yarnpkg.com/) em sua máquina. Após fazer isso, clone esse repositório para uma pasta local, entre na pasta uprace através do seu terminal e rode o comando abaixo através da linha de comando:
 ```
 yarn install
 ```
@@ -73,7 +73,7 @@ Desafios bônus propostos:
 Desafios adicionados por mim:
 - [x] Modal com tutorial do jogo;
 - [x] Efeitos sonoros;
-- [x] Tela de fim de jogo;
+- [x] Telas de fim de jogo;
 
 
 ## 🔖 Layout
