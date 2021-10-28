@@ -15,6 +15,9 @@ import '../Race/index.scss'
 export function Race(){
   const { carCrashed, setCarCrashed } = useContext(EndGameContext);
 
+  /* var bgTrack = new Audio('../../assets/audio/backgroundTrack.mp3');
+  bgTrack.play(); */
+
   const { gameStatus, blueCarStatus, redCarStatus, positions, updateRedCarPosition, handleGameTimeChanges, downgradeGameDistance, handleKeyDown, verifyCarCrash, handlePauseGame, handleGameOver} = useGame();
 
   useEffect(() => {

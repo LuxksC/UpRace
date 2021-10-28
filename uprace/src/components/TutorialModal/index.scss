@@ -11,7 +11,7 @@
 }
 
 #tutorial-modal.in-game {
-  height: 570px;
+  height: 605px;
 }
 
 #tutorial-modal {
@@ -28,7 +28,7 @@
   justify-content: center;
 
   width: 500px;
-  height: 628px;
+  height: 658px;
 
   border-radius: 15px;
 
@@ -42,7 +42,7 @@
     margin-top: 13px;
   }
 
-  .letter-keys {
+  .keys {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,12 +50,12 @@
     gap: 37px;
   }
 
-  .arrow-keys {
+  /* .arrow-keys {
     margin: 0 131px 30px 131px;
     display: flex;
     align-items: center;
     gap: 45px;
-  }
+  } */
 
   .key-instruction {
     display: flex;
@@ -133,12 +133,12 @@
 
 @media (max-height: 700px) {
   #tutorial-modal.in-game {
-    height: 452px;
+    height: 505px;
   }
 
   #tutorial-modal {
     width: 350px;
-    height: 500px;
+    height: 560px;
 
     font-size: 0.8rem;
 
