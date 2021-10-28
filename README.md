@@ -1,4 +1,4 @@
-# UpRace
+# UP & FURIOUS
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
