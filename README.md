@@ -53,7 +53,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 
 ## 📝 Documentação
 
-Para entender como o jogo foi feito, confira a documentação neste [link]('link para Notion')
+Para entender como o jogo foi feito, confira a documentação neste [link](https://www.notion.so/UP-FURIOUS-Documentation-aec6d74491a14e15869a0f5a087926bf)
 
 ---
 
