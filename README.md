@@ -38,7 +38,7 @@ UP & FURIOUS é um jogo de corrida e desvio de obstáculos, single player feito 
 
 Você pode acessar o jogo através desse [link](https://up-and-furious.web.app/)
 
-Para contribuir com o projeto, é necessário instalar o [git](https://git-scm.com/) e o [yarn](https://yarnpkg.com/) em sua máquina. Após fazer isso, clone esse repositório em sua máquina e rode o comando abaixo através da linha de comando:
+Para contribuir com o projeto, é necessário instalar o [git](https://git-scm.com/), o [node](https://nodejs.org/en/) o [yarn](https://yarnpkg.com/) em sua máquina. Após fazer isso, clone esse repositório para uma pasta local, entre na pasta uprace através do seu terminal e rode o comando abaixo, através da linha de comando:
 ```
 yarn install
 ```
@@ -46,6 +46,35 @@ Após fazer isso, você deve rodar o seguinte comando para inicializar a aplica�
 ```
 yarn start
 ```
+
+Desafios obrigatórios a serem cumpridos:
+- [x] Tela inicial com input para nome do usuário;
+- [x] Contador (3, 2, 1 ...);
+- [x] Movimentação do carro com o teclado;
+- [x] Disponibilidade em repositório via Git;
+- [x] Instruções de como instalar e rodar o projeto;
+
+Desafios bônus propostos:
+- [x] Pause;
+- [x] Obstáculo;
+- [x] Turbo (carro acelera automaticamente ao longo da corrida);
+- [x] Fim de corrida;
+- [x] Link público;
+- [ ] Documentação (em andamento);
+- [ ] Multiplayer;
+- [ ] Mobile;
+- [ ] Número de voltas;
+- [ ] Leaderboard;
+- [ ] Apenas CSS;
+- [ ] Stack Upnid;
+- [ ] Testes;
+
+
+Desafios adicionados por mim:
+- [x] Modal com tutorial do jogo;
+- [x] Efeitos sonoros;
+- [x] Tela de fim de jogo;
+
 
 ## 🔖 Layout
 
