@@ -60,7 +60,7 @@ Desafios bônus propostos:
 - [x] Turbo (carro acelera automaticamente ao longo da corrida);
 - [x] Fim de corrida;
 - [x] Link público;
-- [ ] Documentação (em andamento);
+- [x] Documentação;
 - [ ] Multiplayer;
 - [ ] Mobile;
 - [ ] Número de voltas;
